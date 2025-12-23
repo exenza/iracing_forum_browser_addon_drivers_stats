@@ -3,11 +3,11 @@
 // @namespace    http://tampermonkey.net/
 // @version      2.0_2025-12-23
 // @description  Show user stats in the iRacing forum
-// @author       MR
+// @author       Max (refactored MR version)
 // @match        https://forums.iracing.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=google.com
-// @downloadURL  https://raw.githubusercontent.com/exenza/iracing_forum_browser_addon_drivers_stats/refs/heads/main/tampermonkey/ifbads.js?token=$(date%20+%s)
-// @updateURL    https://raw.githubusercontent.com/exenza/iracing_forum_browser_addon_drivers_stats/refs/heads/main/tampermonkey/ifbads.js?token=$(date%20+%s)
+// @downloadURL  https://raw.githubusercontent.com/exenza/iracing_forum_browser_addon_drivers_stats/refs/heads/main/tampermonkey/ifbads_source.js
+// @updateURL    https://raw.githubusercontent.com/exenza/iracing_forum_browser_addon_drivers_stats/refs/heads/main/tampermonkey/ifbads_source.js
 // ==/UserScript==
 
 // NOTE: For task 9.1 implementation, ensure request-metrics-logger.js is loaded before this script

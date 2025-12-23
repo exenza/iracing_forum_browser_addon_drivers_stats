@@ -2,7 +2,7 @@
 # iRacing Forum Browser Addon Drivers Stats
 
 Click on the link below and copy the text in a new tampermonkey script:
-- [ifbads.js](https://raw.githubusercontent.com/exenza/iracing_forum_browser_addon_drivers_stats/refs/heads/main/tampermonkey/ifbads.js?token=$(date%20+%s))
+- [ifbads_source.js](https://raw.githubusercontent.com/exenza/iracing_forum_browser_addon_drivers_stats/refs/heads/main/tampermonkey/ifbads_source.js)
 
 
 If you want to deploy the backend keep reading and update the endpoint in the script.
