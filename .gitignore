@@ -1,0 +1,15 @@
+*.js
+!tampermonkey/*.js
+!jest.config.js
+*.d.ts
+node_modules
+outputs-*
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
+# Secrets and configuration files
+config/secrets.json
+config/secrets-*.json
+*.secrets.json

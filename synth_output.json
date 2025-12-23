@@ -1,0 +1,1264 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!                                                                                                                      !!
+!!  This software has not been tested with node v24.7.0.                                                                !!
+!!  Should you encounter odd runtime issues, please try using one of the supported release before filing a bug report.  !!
+!!                                                                                                                      !!
+!!  This software is currently running on node v24.7.0.                                                                 !!
+!!  As of the current release of this software, supported node releases are:                                            !!
+!!  - ^20.0.0 (Planned end-of-life: 2026-04-30)                                                                         !!
+!!                                                                                                                      !!
+!!  This warning can be silenced by setting the JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION environment variable.        !!
+!!                                                                                                                      !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Description: Development environment for iRacing Forum Browser Addon Drivers Stats
+Resources:
+  DatabaseConstructIRAuthTable87D75A5F:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: username
+          AttributeType: S
+      BillingMode: PAY_PER_REQUEST
+      KeySchema:
+        - AttributeName: username
+          KeyType: HASH
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+      TableName: dev-iracing-forum-browser-addon-drivers-stats-ir_auth
+      Tags:
+        - Key: Component
+          Value: Database
+        - Key: CostCenter
+          Value: Engineering
+        - Key: CreatedBy
+          Value: CDK-Infrastructure-Stack
+        - Key: Environment
+          Value: dev
+        - Key: LastModified
+          Value: "2025-12-23"
+        - Key: ManagedBy
+          Value: CDK
+        - Key: Owner
+          Value: DevOps
+        - Key: Project
+          Value: iRacing-Forum-Browser-Addon-Drivers-Stats
+        - Key: Service
+          Value: iRacing
+      TimeToLiveSpecification:
+        AttributeName: ttl
+        Enabled: true
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/DatabaseConstruct/IRAuthTable/Resource
+  DatabaseConstructIRCustidTable53921152:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: name
+          AttributeType: S
+      BillingMode: PAY_PER_REQUEST
+      KeySchema:
+        - AttributeName: name
+          KeyType: HASH
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+      TableName: dev-iracing-forum-browser-addon-drivers-stats-ir_custid
+      Tags:
+        - Key: Component
+          Value: Database
+        - Key: CostCenter
+          Value: Engineering
+        - Key: CreatedBy
+          Value: CDK-Infrastructure-Stack
+        - Key: Environment
+          Value: dev
+        - Key: LastModified
+          Value: "2025-12-23"
+        - Key: ManagedBy
+          Value: CDK
+        - Key: Owner
+          Value: DevOps
+        - Key: Project
+          Value: iRacing-Forum-Browser-Addon-Drivers-Stats
+        - Key: Service
+          Value: iRacing
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/DatabaseConstruct/IRCustidTable/Resource
+  DatabaseConstructIRDriversTable6D742559:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: name
+          AttributeType: S
+      BillingMode: PAY_PER_REQUEST
+      KeySchema:
+        - AttributeName: name
+          KeyType: HASH
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+      TableName: dev-iracing-forum-browser-addon-drivers-stats-ir_drivers
+      Tags:
+        - Key: Component
+          Value: Database
+        - Key: CostCenter
+          Value: Engineering
+        - Key: CreatedBy
+          Value: CDK-Infrastructure-Stack
+        - Key: Environment
+          Value: dev
+        - Key: LastModified
+          Value: "2025-12-23"
+        - Key: ManagedBy
+          Value: CDK
+        - Key: Owner
+          Value: DevOps
+        - Key: Project
+          Value: iRacing-Forum-Browser-Addon-Drivers-Stats
+        - Key: Service
+          Value: iRacing
+      TimeToLiveSpecification:
+        AttributeName: ttl
+        Enabled: true
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/DatabaseConstruct/IRDriversTable/Resource
+  LambdaConstructIRAuthFunctionRoleB5DEFF9D:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: "2012-10-17"
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Tags:
+        - Key: Component
+          Value: Infrastructure
+        - Key: CostCenter
+          Value: Engineering
+        - Key: CreatedBy
+          Value: CDK-Infrastructure-Stack
+        - Key: Environment
+          Value: dev
+        - Key: LastModified
+          Value: "2025-12-23"
+        - Key: ManagedBy
+          Value: CDK
+        - Key: Owner
+          Value: DevOps
+        - Key: Project
+          Value: iRacing-Forum-Browser-Addon-Drivers-Stats
+        - Key: Service
+          Value: iRacing-Forum-Browser-Addon-Drivers-Stats
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/LambdaConstruct/IRAuthFunctionRole/Resource
+  LambdaConstructIRCustidFunctionRole7F2532C9:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: "2012-10-17"
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Tags:
+        - Key: Component
+          Value: Infrastructure
+        - Key: CostCenter
+          Value: Engineering
+        - Key: CreatedBy
+          Value: CDK-Infrastructure-Stack
+        - Key: Environment
+          Value: dev
+        - Key: LastModified
+          Value: "2025-12-23"
+        - Key: ManagedBy
+          Value: CDK
+        - Key: Owner
+          Value: DevOps
+        - Key: Project
+          Value: iRacing-Forum-Browser-Addon-Drivers-Stats
+        - Key: Service
+          Value: iRacing-Forum-Browser-Addon-Drivers-Stats
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/LambdaConstruct/IRCustidFunctionRole/Resource
+  LambdaConstructIRDriversFunctionRoleEF765AB6:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: "2012-10-17"
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Tags:
+        - Key: Component
+          Value: Infrastructure
+        - Key: CostCenter
+          Value: Engineering
+        - Key: CreatedBy
+          Value: CDK-Infrastructure-Stack
+        - Key: Environment
+          Value: dev
+        - Key: LastModified
+          Value: "2025-12-23"
+        - Key: ManagedBy
+          Value: CDK
+        - Key: Owner
+          Value: DevOps
+        - Key: Project
+          Value: iRacing-Forum-Browser-Addon-Drivers-Stats
+        - Key: Service
+          Value: iRacing-Forum-Browser-Addon-Drivers-Stats
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/LambdaConstruct/IRDriversFunctionRole/Resource
+  LambdaConstructIRAuthFunction86B57A03:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-596463222163-eu-central-1
+        S3Key: 7be0357dd8be4f9edea73ebe8794ebdf9d2c03c17185af11c597aa73b911ba4f.zip
+      Description: iRacing OAuth 2.1 authentication handler
+      Environment:
+        Variables:
+          REGION: eu-central-1
+          ENVIRONMENT: dev
+          IR_AUTH_TABLE_NAME:
+            Ref: DatabaseConstructIRAuthTable87D75A5F
+          IRACING_SECRET_NAME: dev-iracing-forum-browser-addon-drivers-stats-oauth-credentials
+      Handler: lambda_function.lambda_handler
+      MemorySize: 256
+      Role:
+        Fn::GetAtt:
+          - LambdaConstructIRAuthFunctionRoleB5DEFF9D
+          - Arn
+      Runtime: python3.9
+      Tags:
+        - Key: Component
+          Value: Lambda
+        - Key: CostCenter
+          Value: Engineering
+        - Key: CreatedBy
+          Value: CDK-Infrastructure-Stack
+        - Key: Environment
+          Value: dev
+        - Key: LastModified
+          Value: "2025-12-23"
+        - Key: ManagedBy
+          Value: CDK
+        - Key: Owner
+          Value: DevOps
+        - Key: Project
+          Value: iRacing-Forum-Browser-Addon-Drivers-Stats
+        - Key: Service
+          Value: iRacing
+      Timeout: 30
+    DependsOn:
+      - LambdaConstructIRAuthFunctionRoleB5DEFF9D
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/LambdaConstruct/IRAuthFunction/Resource
+      aws:asset:path: asset.7be0357dd8be4f9edea73ebe8794ebdf9d2c03c17185af11c597aa73b911ba4f
+      aws:asset:is-bundled: false
+      aws:asset:property: Code
+  LambdaConstructIRCustidFunction56DC1613:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-596463222163-eu-central-1
+        S3Key: ff4c32493fc44be488b3f52ff92f15f1573d28f2cc6e33a9153fb95bed629a97.zip
+      Description: iRacing customer ID lookup handler
+      Environment:
+        Variables:
+          REGION: eu-central-1
+          ENVIRONMENT: dev
+          IR_AUTH_TABLE_NAME:
+            Ref: DatabaseConstructIRAuthTable87D75A5F
+          IR_CUSTID_TABLE_NAME:
+            Ref: DatabaseConstructIRCustidTable53921152
+          IRACING_SECRET_NAME: dev-iracing-forum-browser-addon-drivers-stats-oauth-credentials
+          IR_AUTH_FUNCTION_ARN:
+            Fn::GetAtt:
+              - LambdaConstructIRAuthFunction86B57A03
+              - Arn
+      Handler: lambda_function.lambda_handler
+      MemorySize: 256
+      Role:
+        Fn::GetAtt:
+          - LambdaConstructIRCustidFunctionRole7F2532C9
+          - Arn
+      Runtime: python3.9
+      Tags:
+        - Key: Component
+          Value: Lambda
+        - Key: CostCenter
+          Value: Engineering
+        - Key: CreatedBy
+          Value: CDK-Infrastructure-Stack
+        - Key: Environment
+          Value: dev
+        - Key: LastModified
+          Value: "2025-12-23"
+        - Key: ManagedBy
+          Value: CDK
+        - Key: Owner
+          Value: DevOps
+        - Key: Project
+          Value: iRacing-Forum-Browser-Addon-Drivers-Stats
+        - Key: Service
+          Value: iRacing
+      Timeout: 60
+    DependsOn:
+      - LambdaConstructIRCustidFunctionRole7F2532C9
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/LambdaConstruct/IRCustidFunction/Resource
+      aws:asset:path: asset.ff4c32493fc44be488b3f52ff92f15f1573d28f2cc6e33a9153fb95bed629a97
+      aws:asset:is-bundled: false
+      aws:asset:property: Code
+  LambdaConstructIRDriversFunction9F37DFE0:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-596463222163-eu-central-1
+        S3Key: 6cec6f47ac2a31b5a3512681c7ddec858f38440e3cb101fc9b88228307077c52.zip
+      Description: iRacing driver profile lookup handler
+      Environment:
+        Variables:
+          REGION: eu-central-1
+          ENVIRONMENT: dev
+          IR_AUTH_TABLE_NAME:
+            Ref: DatabaseConstructIRAuthTable87D75A5F
+          IR_CUSTID_TABLE_NAME:
+            Ref: DatabaseConstructIRCustidTable53921152
+          IR_DRIVERS_TABLE_NAME:
+            Ref: DatabaseConstructIRDriversTable6D742559
+          IRACING_SECRET_NAME: dev-iracing-forum-browser-addon-drivers-stats-oauth-credentials
+          IR_AUTH_FUNCTION_ARN:
+            Fn::GetAtt:
+              - LambdaConstructIRAuthFunction86B57A03
+              - Arn
+          IR_CUSTID_FUNCTION_ARN:
+            Fn::GetAtt:
+              - LambdaConstructIRCustidFunction56DC1613
+              - Arn
+      Handler: lambda_function.lambda_handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+          - LambdaConstructIRDriversFunctionRoleEF765AB6
+          - Arn
+      Runtime: python3.9
+      Tags:
+        - Key: Component
+          Value: Lambda
+        - Key: CostCenter
+          Value: Engineering
+        - Key: CreatedBy
+          Value: CDK-Infrastructure-Stack
+        - Key: Environment
+          Value: dev
+        - Key: LastModified
+          Value: "2025-12-23"
+        - Key: ManagedBy
+          Value: CDK
+        - Key: Owner
+          Value: DevOps
+        - Key: Project
+          Value: iRacing-Forum-Browser-Addon-Drivers-Stats
+        - Key: Service
+          Value: iRacing
+      Timeout: 300
+    DependsOn:
+      - LambdaConstructIRDriversFunctionRoleEF765AB6
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/LambdaConstruct/IRDriversFunction/Resource
+      aws:asset:path: asset.6cec6f47ac2a31b5a3512681c7ddec858f38440e3cb101fc9b88228307077c52
+      aws:asset:is-bundled: false
+      aws:asset:property: Code
+  LambdaConstructAuthTablePolicy179F7B9F:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - dynamodb:BatchGetItem
+              - dynamodb:BatchWriteItem
+              - dynamodb:ConditionCheckItem
+              - dynamodb:DeleteItem
+              - dynamodb:DescribeTable
+              - dynamodb:GetItem
+              - dynamodb:GetRecords
+              - dynamodb:GetShardIterator
+              - dynamodb:PutItem
+              - dynamodb:Query
+              - dynamodb:Scan
+              - dynamodb:UpdateItem
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - DatabaseConstructIRAuthTable87D75A5F
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - DatabaseConstructIRAuthTable87D75A5F
+                        - Arn
+                    - /index/*
+        Version: "2012-10-17"
+      PolicyName: LambdaConstructAuthTablePolicy179F7B9F
+      Roles:
+        - Ref: LambdaConstructIRAuthFunctionRoleB5DEFF9D
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/LambdaConstruct/AuthTablePolicy/Resource
+  LambdaConstructCustidTablePolicy790460FB:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - dynamodb:BatchGetItem
+              - dynamodb:ConditionCheckItem
+              - dynamodb:DescribeTable
+              - dynamodb:GetItem
+              - dynamodb:GetRecords
+              - dynamodb:GetShardIterator
+              - dynamodb:Query
+              - dynamodb:Scan
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - DatabaseConstructIRAuthTable87D75A5F
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - DatabaseConstructIRAuthTable87D75A5F
+                        - Arn
+                    - /index/*
+          - Action:
+              - dynamodb:BatchGetItem
+              - dynamodb:BatchWriteItem
+              - dynamodb:ConditionCheckItem
+              - dynamodb:DeleteItem
+              - dynamodb:DescribeTable
+              - dynamodb:GetItem
+              - dynamodb:GetRecords
+              - dynamodb:GetShardIterator
+              - dynamodb:PutItem
+              - dynamodb:Query
+              - dynamodb:Scan
+              - dynamodb:UpdateItem
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - DatabaseConstructIRCustidTable53921152
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - DatabaseConstructIRCustidTable53921152
+                        - Arn
+                    - /index/*
+        Version: "2012-10-17"
+      PolicyName: LambdaConstructCustidTablePolicy790460FB
+      Roles:
+        - Ref: LambdaConstructIRCustidFunctionRole7F2532C9
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/LambdaConstruct/CustidTablePolicy/Resource
+  LambdaConstructDriversTablePolicy63358F3A:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - dynamodb:BatchGetItem
+              - dynamodb:ConditionCheckItem
+              - dynamodb:DescribeTable
+              - dynamodb:GetItem
+              - dynamodb:GetRecords
+              - dynamodb:GetShardIterator
+              - dynamodb:Query
+              - dynamodb:Scan
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - DatabaseConstructIRAuthTable87D75A5F
+                  - Arn
+              - Fn::GetAtt:
+                  - DatabaseConstructIRCustidTable53921152
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - DatabaseConstructIRAuthTable87D75A5F
+                        - Arn
+                    - /index/*
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - DatabaseConstructIRCustidTable53921152
+                        - Arn
+                    - /index/*
+          - Action:
+              - dynamodb:BatchGetItem
+              - dynamodb:BatchWriteItem
+              - dynamodb:ConditionCheckItem
+              - dynamodb:DeleteItem
+              - dynamodb:DescribeTable
+              - dynamodb:GetItem
+              - dynamodb:GetRecords
+              - dynamodb:GetShardIterator
+              - dynamodb:PutItem
+              - dynamodb:Query
+              - dynamodb:Scan
+              - dynamodb:UpdateItem
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - DatabaseConstructIRDriversTable6D742559
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - DatabaseConstructIRDriversTable6D742559
+                        - Arn
+                    - /index/*
+        Version: "2012-10-17"
+      PolicyName: LambdaConstructDriversTablePolicy63358F3A
+      Roles:
+        - Ref: LambdaConstructIRDriversFunctionRoleEF765AB6
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/LambdaConstruct/DriversTablePolicy/Resource
+  LambdaConstructAuthSecretsPolicy76AE2059:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - secretsmanager:DescribeSecret
+              - secretsmanager:GetSecretValue
+            Effect: Allow
+            Resource: arn:aws:secretsmanager:eu-central-1:596463222163:secret:dev-iracing-forum-browser-addon-drivers-stats-oauth-credentials
+        Version: "2012-10-17"
+      PolicyName: LambdaConstructAuthSecretsPolicy76AE2059
+      Roles:
+        - Ref: LambdaConstructIRAuthFunctionRoleB5DEFF9D
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/LambdaConstruct/AuthSecretsPolicy/Resource
+  LambdaConstructCustidSecretsPolicyFFEC0FD4:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - secretsmanager:DescribeSecret
+              - secretsmanager:GetSecretValue
+            Effect: Allow
+            Resource: arn:aws:secretsmanager:eu-central-1:596463222163:secret:dev-iracing-forum-browser-addon-drivers-stats-oauth-credentials
+        Version: "2012-10-17"
+      PolicyName: LambdaConstructCustidSecretsPolicyFFEC0FD4
+      Roles:
+        - Ref: LambdaConstructIRCustidFunctionRole7F2532C9
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/LambdaConstruct/CustidSecretsPolicy/Resource
+  LambdaConstructDriversSecretsPolicyDA227291:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - secretsmanager:DescribeSecret
+              - secretsmanager:GetSecretValue
+            Effect: Allow
+            Resource: arn:aws:secretsmanager:eu-central-1:596463222163:secret:dev-iracing-forum-browser-addon-drivers-stats-oauth-credentials
+        Version: "2012-10-17"
+      PolicyName: LambdaConstructDriversSecretsPolicyDA227291
+      Roles:
+        - Ref: LambdaConstructIRDriversFunctionRoleEF765AB6
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/LambdaConstruct/DriversSecretsPolicy/Resource
+  LambdaConstructCustidInvokeAuthPolicyB09E5C96:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action: lambda:InvokeFunction
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - LambdaConstructIRAuthFunction86B57A03
+                - Arn
+        Version: "2012-10-17"
+      PolicyName: LambdaConstructCustidInvokeAuthPolicyB09E5C96
+      Roles:
+        - Ref: LambdaConstructIRCustidFunctionRole7F2532C9
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/LambdaConstruct/CustidInvokeAuthPolicy/Resource
+  LambdaConstructDriversInvokePolicyA44E07E7:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action: lambda:InvokeFunction
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - LambdaConstructIRAuthFunction86B57A03
+                  - Arn
+              - Fn::GetAtt:
+                  - LambdaConstructIRCustidFunction56DC1613
+                  - Arn
+        Version: "2012-10-17"
+      PolicyName: LambdaConstructDriversInvokePolicyA44E07E7
+      Roles:
+        - Ref: LambdaConstructIRDriversFunctionRoleEF765AB6
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/LambdaConstruct/DriversInvokePolicy/Resource
+  ApiGatewayConstructIRacingApi6532F40F:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Description: API Gateway for iRacing Forum Browser Addon Drivers Stats Lambda functions
+      Name: dev-iracing-forum-browser-addon-drivers-stats-api
+      Tags:
+        - Key: Component
+          Value: API Gateway
+        - Key: CostCenter
+          Value: Engineering
+        - Key: CreatedBy
+          Value: CDK-Infrastructure-Stack
+        - Key: Environment
+          Value: dev
+        - Key: LastModified
+          Value: "2025-12-23"
+        - Key: ManagedBy
+          Value: CDK
+        - Key: Owner
+          Value: DevOps
+        - Key: Project
+          Value: iRacing-Forum-Browser-Addon-Drivers-Stats
+        - Key: Service
+          Value: iRacing-Forum-Browser-Addon-Drivers-Stats
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/Resource
+  ApiGatewayConstructIRacingApiDeploymentC201A4A7eaeb88f30764f6fe3d3c36cb0c0b9ffc:
+    Type: AWS::ApiGateway::Deployment
+    Properties:
+      Description: API Gateway for iRacing Forum Browser Addon Drivers Stats Lambda functions
+      RestApiId:
+        Ref: ApiGatewayConstructIRacingApi6532F40F
+    DependsOn:
+      - ApiGatewayConstructIRacingApiauthOPTIONS97713AED
+      - ApiGatewayConstructIRacingApiauthPOSTBF721DD1
+      - ApiGatewayConstructIRacingApiauthCFB8EF50
+      - ApiGatewayConstructIRacingApicustidGET2B035168
+      - ApiGatewayConstructIRacingApicustidOPTIONS0A9269CA
+      - ApiGatewayConstructIRacingApicustidA5DE16D5
+      - ApiGatewayConstructIRacingApidriversGETEEDAFD83
+      - ApiGatewayConstructIRacingApidriversOPTIONSEE6938E9
+      - ApiGatewayConstructIRacingApidrivers6C95A2BE
+      - ApiGatewayConstructIRacingApiOPTIONS2A6C8B54
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/Deployment/Resource
+  ApiGatewayConstructIRacingApiDeploymentStagedev3EF4D743:
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      DeploymentId:
+        Ref: ApiGatewayConstructIRacingApiDeploymentC201A4A7eaeb88f30764f6fe3d3c36cb0c0b9ffc
+      MethodSettings:
+        - DataTraceEnabled: false
+          HttpMethod: "*"
+          ResourcePath: /*
+          ThrottlingBurstLimit: 100
+          ThrottlingRateLimit: 50
+      RestApiId:
+        Ref: ApiGatewayConstructIRacingApi6532F40F
+      StageName: dev
+      Tags:
+        - Key: Component
+          Value: API Gateway
+        - Key: CostCenter
+          Value: Engineering
+        - Key: CreatedBy
+          Value: CDK-Infrastructure-Stack
+        - Key: Environment
+          Value: dev
+        - Key: LastModified
+          Value: "2025-12-23"
+        - Key: ManagedBy
+          Value: CDK
+        - Key: Owner
+          Value: DevOps
+        - Key: Project
+          Value: iRacing-Forum-Browser-Addon-Drivers-Stats
+        - Key: Service
+          Value: iRacing-Forum-Browser-Addon-Drivers-Stats
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/DeploymentStage.dev/Resource
+  ApiGatewayConstructIRacingApiOPTIONS2A6C8B54:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      ApiKeyRequired: false
+      AuthorizationType: NONE
+      HttpMethod: OPTIONS
+      Integration:
+        IntegrationResponses:
+          - ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+            StatusCode: "204"
+        RequestTemplates:
+          application/json: "{ statusCode: 200 }"
+        Type: MOCK
+      MethodResponses:
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Origin: true
+            method.response.header.Access-Control-Allow-Methods: true
+          StatusCode: "204"
+      ResourceId:
+        Fn::GetAtt:
+          - ApiGatewayConstructIRacingApi6532F40F
+          - RootResourceId
+      RestApiId:
+        Ref: ApiGatewayConstructIRacingApi6532F40F
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/Default/OPTIONS/Resource
+  ApiGatewayConstructIRacingApiauthCFB8EF50:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Fn::GetAtt:
+          - ApiGatewayConstructIRacingApi6532F40F
+          - RootResourceId
+      PathPart: auth
+      RestApiId:
+        Ref: ApiGatewayConstructIRacingApi6532F40F
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/Default/auth/Resource
+  ApiGatewayConstructIRacingApiauthOPTIONS97713AED:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      ApiKeyRequired: false
+      AuthorizationType: NONE
+      HttpMethod: OPTIONS
+      Integration:
+        IntegrationResponses:
+          - ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+            StatusCode: "204"
+        RequestTemplates:
+          application/json: "{ statusCode: 200 }"
+        Type: MOCK
+      MethodResponses:
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Origin: true
+            method.response.header.Access-Control-Allow-Methods: true
+          StatusCode: "204"
+      ResourceId:
+        Ref: ApiGatewayConstructIRacingApiauthCFB8EF50
+      RestApiId:
+        Ref: ApiGatewayConstructIRacingApi6532F40F
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/Default/auth/OPTIONS/Resource
+  ApiGatewayConstructIRacingApiauthPOSTApiPermissioniracingforumbrowseraddondriversstatsdevApiGatewayConstructIRacingApiF810935DPOSTauth3AE2EDDB:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - LambdaConstructIRAuthFunction86B57A03
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:eu-central-1:596463222163:"
+            - Ref: ApiGatewayConstructIRacingApi6532F40F
+            - /
+            - Ref: ApiGatewayConstructIRacingApiDeploymentStagedev3EF4D743
+            - /POST/auth
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/Default/auth/POST/ApiPermission.iracingforumbrowseraddondriversstatsdevApiGatewayConstructIRacingApiF810935D.POST..auth
+  ApiGatewayConstructIRacingApiauthPOSTApiPermissionTestiracingforumbrowseraddondriversstatsdevApiGatewayConstructIRacingApiF810935DPOSTauth94E58B0C:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - LambdaConstructIRAuthFunction86B57A03
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:eu-central-1:596463222163:"
+            - Ref: ApiGatewayConstructIRacingApi6532F40F
+            - /test-invoke-stage/POST/auth
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/Default/auth/POST/ApiPermission.Test.iracingforumbrowseraddondriversstatsdevApiGatewayConstructIRacingApiF810935D.POST..auth
+  ApiGatewayConstructIRacingApiauthPOSTBF721DD1:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: POST
+      Integration:
+        IntegrationHttpMethod: POST
+        RequestTemplates:
+          application/json: '{ "statusCode": "200" }'
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ""
+            - - arn:aws:apigateway:eu-central-1:lambda:path/2015-03-31/functions/
+              - Fn::GetAtt:
+                  - LambdaConstructIRAuthFunction86B57A03
+                  - Arn
+              - /invocations
+      MethodResponses:
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+          StatusCode: "200"
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+          StatusCode: "400"
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+          StatusCode: "401"
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+            method.response.header.Retry-After: true
+          StatusCode: "429"
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+          StatusCode: "500"
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+          StatusCode: "503"
+      ResourceId:
+        Ref: ApiGatewayConstructIRacingApiauthCFB8EF50
+      RestApiId:
+        Ref: ApiGatewayConstructIRacingApi6532F40F
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/Default/auth/POST/Resource
+  ApiGatewayConstructIRacingApicustidA5DE16D5:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Fn::GetAtt:
+          - ApiGatewayConstructIRacingApi6532F40F
+          - RootResourceId
+      PathPart: custid
+      RestApiId:
+        Ref: ApiGatewayConstructIRacingApi6532F40F
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/Default/custid/Resource
+  ApiGatewayConstructIRacingApicustidOPTIONS0A9269CA:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      ApiKeyRequired: false
+      AuthorizationType: NONE
+      HttpMethod: OPTIONS
+      Integration:
+        IntegrationResponses:
+          - ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+            StatusCode: "204"
+        RequestTemplates:
+          application/json: "{ statusCode: 200 }"
+        Type: MOCK
+      MethodResponses:
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Origin: true
+            method.response.header.Access-Control-Allow-Methods: true
+          StatusCode: "204"
+      ResourceId:
+        Ref: ApiGatewayConstructIRacingApicustidA5DE16D5
+      RestApiId:
+        Ref: ApiGatewayConstructIRacingApi6532F40F
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/Default/custid/OPTIONS/Resource
+  ApiGatewayConstructIRacingApicustidGETApiPermissioniracingforumbrowseraddondriversstatsdevApiGatewayConstructIRacingApiF810935DGETcustidBBBB6569:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - LambdaConstructIRCustidFunction56DC1613
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:eu-central-1:596463222163:"
+            - Ref: ApiGatewayConstructIRacingApi6532F40F
+            - /
+            - Ref: ApiGatewayConstructIRacingApiDeploymentStagedev3EF4D743
+            - /GET/custid
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/Default/custid/GET/ApiPermission.iracingforumbrowseraddondriversstatsdevApiGatewayConstructIRacingApiF810935D.GET..custid
+  ApiGatewayConstructIRacingApicustidGETApiPermissionTestiracingforumbrowseraddondriversstatsdevApiGatewayConstructIRacingApiF810935DGETcustid9D5EF6AF:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - LambdaConstructIRCustidFunction56DC1613
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:eu-central-1:596463222163:"
+            - Ref: ApiGatewayConstructIRacingApi6532F40F
+            - /test-invoke-stage/GET/custid
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/Default/custid/GET/ApiPermission.Test.iracingforumbrowseraddondriversstatsdevApiGatewayConstructIRacingApiF810935D.GET..custid
+  ApiGatewayConstructIRacingApicustidGET2B035168:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: GET
+      Integration:
+        IntegrationHttpMethod: POST
+        RequestTemplates:
+          application/json: '{ "statusCode": "200" }'
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ""
+            - - arn:aws:apigateway:eu-central-1:lambda:path/2015-03-31/functions/
+              - Fn::GetAtt:
+                  - LambdaConstructIRCustidFunction56DC1613
+                  - Arn
+              - /invocations
+      MethodResponses:
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+          StatusCode: "200"
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+          StatusCode: "400"
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+          StatusCode: "401"
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+          StatusCode: "404"
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+          StatusCode: "500"
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+          StatusCode: "502"
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+          StatusCode: "503"
+      RequestParameters:
+        method.request.querystring.name: false
+      ResourceId:
+        Ref: ApiGatewayConstructIRacingApicustidA5DE16D5
+      RestApiId:
+        Ref: ApiGatewayConstructIRacingApi6532F40F
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/Default/custid/GET/Resource
+  ApiGatewayConstructIRacingApidrivers6C95A2BE:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Fn::GetAtt:
+          - ApiGatewayConstructIRacingApi6532F40F
+          - RootResourceId
+      PathPart: drivers
+      RestApiId:
+        Ref: ApiGatewayConstructIRacingApi6532F40F
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/Default/drivers/Resource
+  ApiGatewayConstructIRacingApidriversOPTIONSEE6938E9:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      ApiKeyRequired: false
+      AuthorizationType: NONE
+      HttpMethod: OPTIONS
+      Integration:
+        IntegrationResponses:
+          - ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+            StatusCode: "204"
+        RequestTemplates:
+          application/json: "{ statusCode: 200 }"
+        Type: MOCK
+      MethodResponses:
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Origin: true
+            method.response.header.Access-Control-Allow-Methods: true
+          StatusCode: "204"
+      ResourceId:
+        Ref: ApiGatewayConstructIRacingApidrivers6C95A2BE
+      RestApiId:
+        Ref: ApiGatewayConstructIRacingApi6532F40F
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/Default/drivers/OPTIONS/Resource
+  ApiGatewayConstructIRacingApidriversGETApiPermissioniracingforumbrowseraddondriversstatsdevApiGatewayConstructIRacingApiF810935DGETdriversD55CD9FB:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - LambdaConstructIRDriversFunction9F37DFE0
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:eu-central-1:596463222163:"
+            - Ref: ApiGatewayConstructIRacingApi6532F40F
+            - /
+            - Ref: ApiGatewayConstructIRacingApiDeploymentStagedev3EF4D743
+            - /GET/drivers
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/Default/drivers/GET/ApiPermission.iracingforumbrowseraddondriversstatsdevApiGatewayConstructIRacingApiF810935D.GET..drivers
+  ApiGatewayConstructIRacingApidriversGETApiPermissionTestiracingforumbrowseraddondriversstatsdevApiGatewayConstructIRacingApiF810935DGETdrivers4428ECA3:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - LambdaConstructIRDriversFunction9F37DFE0
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:eu-central-1:596463222163:"
+            - Ref: ApiGatewayConstructIRacingApi6532F40F
+            - /test-invoke-stage/GET/drivers
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/Default/drivers/GET/ApiPermission.Test.iracingforumbrowseraddondriversstatsdevApiGatewayConstructIRacingApiF810935D.GET..drivers
+  ApiGatewayConstructIRacingApidriversGETEEDAFD83:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: GET
+      Integration:
+        IntegrationHttpMethod: POST
+        RequestTemplates:
+          application/json: '{ "statusCode": "200" }'
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ""
+            - - arn:aws:apigateway:eu-central-1:lambda:path/2015-03-31/functions/
+              - Fn::GetAtt:
+                  - LambdaConstructIRDriversFunction9F37DFE0
+                  - Arn
+              - /invocations
+      MethodResponses:
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+          StatusCode: "200"
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+          StatusCode: "400"
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+          StatusCode: "401"
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+          StatusCode: "404"
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+          StatusCode: "500"
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+          StatusCode: "502"
+        - ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+          StatusCode: "503"
+      RequestParameters:
+        method.request.querystring.names: false
+        method.request.querystring.name: false
+      ResourceId:
+        Ref: ApiGatewayConstructIRacingApidrivers6C95A2BE
+      RestApiId:
+        Ref: ApiGatewayConstructIRacingApi6532F40F
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/ApiGatewayConstruct/IRacingApi/Default/drivers/GET/Resource
+  CDKMetadata:
+    Type: AWS::CDK::Metadata
+    Properties:
+      Analytics: v2:deflate64:H4sIAAAAAAAA/1WPQU/DMAyFf8vuaYCBhHbcQNwQU+E+uYkZXpukqh2mqup/J0kHGid/zy+xn9d6s9F3KzhzZWxbddTo6V3AtKpGDnEwqJJ3mOzowQWb3A9oOlRPn77ArAicnuqw9Erdh47MmOVCs+rANRb09BK9EQo+e9e8x8ERc1Kz4vsDMKOw3uaStN5F06LsgFOYno4geIYxLUWWbU9l7wWfse/C6NBL7l6pdNOxJFzg97gy8xXlK9hsXujv9GVy4XlWJU/+T/6YrbcofZR/j5QPFvWJb77XD/pR365OTFQN0Qs51PVSfwB/3czidAEAAA==
+    Metadata:
+      aws:cdk:path: iracing-forum-browser-addon-drivers-stats-dev/CDKMetadata/Default
+Outputs:
+  ApiGatewayConstructIRacingApiEndpointA8B11FF2:
+    Value:
+      Fn::Join:
+        - ""
+        - - https://
+          - Ref: ApiGatewayConstructIRacingApi6532F40F
+          - .execute-api.eu-central-1.
+          - Ref: AWS::URLSuffix
+          - /
+          - Ref: ApiGatewayConstructIRacingApiDeploymentStagedev3EF4D743
+          - /
+  ApiGatewayUrl:
+    Description: API Gateway URL for dev environment
+    Value:
+      Fn::Join:
+        - ""
+        - - https://
+          - Ref: ApiGatewayConstructIRacingApi6532F40F
+          - .execute-api.eu-central-1.
+          - Ref: AWS::URLSuffix
+          - /
+          - Ref: ApiGatewayConstructIRacingApiDeploymentStagedev3EF4D743
+          - /
+    Export:
+      Name: iracing-forum-browser-addon-drivers-stats-dev-ApiGatewayUrl
+  ApiGatewayId:
+    Description: API Gateway ID for dev environment
+    Value:
+      Ref: ApiGatewayConstructIRacingApi6532F40F
+    Export:
+      Name: iracing-forum-browser-addon-drivers-stats-dev-ApiGatewayId
+  SecretArn:
+    Description: iRacing OAuth Secret ARN for dev environment
+    Value: arn:aws:secretsmanager:eu-central-1:596463222163:secret:dev-iracing-forum-browser-addon-drivers-stats-oauth-credentials
+    Export:
+      Name: iracing-forum-browser-addon-drivers-stats-dev-SecretArn
+  SecretName:
+    Description: iRacing OAuth Secret Name for dev environment
+    Value: dev-iracing-forum-browser-addon-drivers-stats-oauth-credentials
+    Export:
+      Name: iracing-forum-browser-addon-drivers-stats-dev-SecretName
+  IRAuthTableName:
+    Description: IR Auth DynamoDB table name for dev environment
+    Value:
+      Ref: DatabaseConstructIRAuthTable87D75A5F
+    Export:
+      Name: iracing-forum-browser-addon-drivers-stats-dev-IRAuthTableName
+  IRCustidTableName:
+    Description: IR Custid DynamoDB table name for dev environment
+    Value:
+      Ref: DatabaseConstructIRCustidTable53921152
+    Export:
+      Name: iracing-forum-browser-addon-drivers-stats-dev-IRCustidTableName
+  IRDriversTableName:
+    Description: IR Drivers DynamoDB table name for dev environment
+    Value:
+      Ref: DatabaseConstructIRDriversTable6D742559
+    Export:
+      Name: iracing-forum-browser-addon-drivers-stats-dev-IRDriversTableName
+  IRAuthFunctionName:
+    Description: IR Auth Lambda function name for dev environment
+    Value:
+      Ref: LambdaConstructIRAuthFunction86B57A03
+    Export:
+      Name: iracing-forum-browser-addon-drivers-stats-dev-IRAuthFunctionName
+  IRCustidFunctionName:
+    Description: IR Custid Lambda function name for dev environment
+    Value:
+      Ref: LambdaConstructIRCustidFunction56DC1613
+    Export:
+      Name: iracing-forum-browser-addon-drivers-stats-dev-IRCustidFunctionName
+  IRDriversFunctionName:
+    Description: IR Drivers Lambda function name for dev environment
+    Value:
+      Ref: LambdaConstructIRDriversFunction9F37DFE0
+    Export:
+      Name: iracing-forum-browser-addon-drivers-stats-dev-IRDriversFunctionName
+  Environment:
+    Description: Deployment environment
+    Value: dev
+    Export:
+      Name: iracing-forum-browser-addon-drivers-stats-dev-Environment
+  Region:
+    Description: AWS region
+    Value: eu-central-1
+    Export:
+      Name: iracing-forum-browser-addon-drivers-stats-dev-Region
+  AccountId:
+    Description: AWS account ID
+    Value: "596463222163"
+    Export:
+      Name: iracing-forum-browser-addon-drivers-stats-dev-AccountId
+Parameters:
+  BootstrapVersion:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /cdk-bootstrap/hnb659fds/version
+    Description: Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]
+Rules:
+  CheckBootstrapVersion:
+    Assertions:
+      - Assert:
+          Fn::Not:
+            - Fn::Contains:
+                - - "1"
+                  - "2"
+                  - "3"
+                  - "4"
+                  - "5"
+                - Ref: BootstrapVersion
+        AssertDescription: CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.
+
+
+NOTICES         (What's this? https://github.com/aws/aws-cdk/wiki/CLI-Notices)
+
+34892	CDK CLI will collect telemetry data on command usage starting at version 2.1100.0 (unless opted out)
+
+	Overview: We do not collect customer content and we anonymize the
+	          telemetry we do collect. See the attached issue for more
+	          information on what data is collected, why, and how to
+	          opt-out. Telemetry will NOT be collected for any CDK CLI
+	          version prior to version 2.1100.0 - regardless of
+	          opt-in/out. You can also preview the telemetry we will start
+	          collecting by logging it to a local file, by adding
+	          `--unstable=telemetry --telemetry-file=my/local/file` to any
+	          `cdk` command.
+
+	Affected versions: cli: >=2.0.0 <2.1100.0
+
+	More information at: https://github.com/aws/aws-cdk/issues/34892
+
+
+If you don’t want to see a notice anymore, use "cdk acknowledge <id>". For example, "cdk acknowledge 34892".
