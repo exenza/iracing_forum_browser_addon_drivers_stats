@@ -6,8 +6,8 @@
 // @author       MR
 // @match        https://forums.iracing.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=google.com
-// @downloadURL  https://raw.githubusercontent.com/exenza/iracing_forum_browser_addon_drivers_stats/refs/heads/main/tampermonkey/ifbads.js
-// @updateURL    https://raw.githubusercontent.com/exenza/iracing_forum_browser_addon_drivers_stats/refs/heads/main/tampermonkey/ifbads.js
+// @downloadURL  https://raw.githubusercontent.com/exenza/iracing_forum_browser_addon_drivers_stats/refs/heads/main/tampermonkey/ifbads.js?token=$(date%20+%s)
+// @updateURL    https://raw.githubusercontent.com/exenza/iracing_forum_browser_addon_drivers_stats/refs/heads/main/tampermonkey/ifbads.js?token=$(date%20+%s)
 // ==/UserScript==
 
 // NOTE: For task 9.1 implementation, ensure request-metrics-logger.js is loaded before this script
