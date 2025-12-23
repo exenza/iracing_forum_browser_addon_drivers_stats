@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         iR Forum user stats
 // @namespace    http://tampermonkey.net/
-// @version      1.31_2025-08-21
+// @version      2.0_2025-12-23
 // @description  Show user stats in the iRacing forum
 // @author       MR
 // @match        https://forums.iracing.com/*
